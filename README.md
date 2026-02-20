@@ -16,6 +16,8 @@ Tested with HMI Engineering/Server 14.12
 
 Tested with TwinCAT.HMI.Database 14.5.12
 
+TF2120 or TF6420 license needed (trial works)
+
 ## OBDC Notes
 
 You need to have ODBC driver on your system to get this to work
