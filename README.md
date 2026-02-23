@@ -40,11 +40,48 @@ For my system its located here. If you dont have the path, make sure to add it.
 
 This is how my connection string looks like that the HMI-Server Extension wants
 
+(Make sure you change the connection string so it fits your server location, database name, username and password)
+
 ```
 Driver={PostgreSQL Unicode(x64)};Server=localhost;Port=5432;Database=hmiExtension;Uid=Jack;Pwd=@password;
 ```
 
-## Write To Database
+## TwinCAT HMI Configuration
+
+To be continued....
+
+## Read from database
+
+1. First lets add a table with some dummy data to the database. I added this data with pgAdmin 4 software.
+
+```sql
+CREATE TABLE machines (  id INT,  type VARCHAR(255), active BOOL);
+INSERT INTO machines (id, type, active)VALUES    (1, 'drive', false),    (2, 'pump', false),    (3, 'conveyor', true);
+```
+
+After we have created the new table with data with the query above we now have data to show in the HMI. 
+
+In the database hmi configuration we have the option to enable table browsing (this is default true)
+
+![image](./images/10.png)
+
+Then we will get our tables listed as individual symbols here
+
+![image](./images/11.png)
+
+2. Now we can link this symbol to a DataGrid and create a data-binding to "Src Data" property
+
+![image](./images/12.png)
+
+3. Then we need to configure the "Src Column" property in our DataGrid to define which data to show and where
+
+![image](./images/13.png)
+
+4. Then we can see the result in the LiveView
+
+![image](./images/14.png)
+
+## Write to database
 
 1. First define a new query with parameters 
 2. Give the parameters a suitable name and a data type (in my sample below "myId" and "newActive")
