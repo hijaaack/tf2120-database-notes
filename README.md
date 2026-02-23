@@ -172,7 +172,7 @@ TcHmi.Server.request(command, function (data) {
     ctx.success(data.results[0].value[0].type); 
 });
 ```
-10. Then as the last step we call the function, for example directly inside the Text property in a TcHmiTextblock. Make sure to write a value inside <machineId> or create a data-binding for a symbol. Otherwise it will not work :)
+10. Then as the last step we call the function, for example directly inside the Text property in a TcHmiTextblock. Make sure to pass a value inside "machineId" or create a data-binding for a symbol. Otherwise it will not work :)
 
 ![image](./images/26.png) 
 
