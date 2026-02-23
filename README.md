@@ -46,25 +46,49 @@ Driver={PostgreSQL Unicode(x64)};Server=localhost;Port=5432;Database=hmiExtensio
 
 ## Write To Database
 
-First define a new query with parameters 
-Give the parameters a suitable name and a data type (in my sample below "myId" and "newActive")
+1. First define a new query with parameters 
+2. Give the parameters a suitable name and a data type (in my sample below "myId" and "newActive")
 
 ![image](./images/5.png)
 
-Then click "Click to change Value" in the picture above to edit the query. 
+3. Then click "Click to change Value" in the picture above to edit the query.
+
 This is my sample query to update the active value depending on the specific id
 
 ![image](./images/6.png)
 
-Double check under diagnostic after creating the new query that the db extension thinks its "good"
+4. Double check under diagnostic after creating the new query that the db extension thinks its "good"
 
 ![image](./images/7.png)
 
-Then you need to map the new query so its a mapped symbol. Otherwise we cannot call it
+5. Then you need to map the new query so its a mapped symbol. Otherwise we cannot call it
 
 ![image](./images/8.png)
 
-Then create a javascript function that uses the request method. Define the command with the symbol name and the parameters you defined to pass the new data to the database!
+6. Then create a javascript function that uses the request method. Define the command with the symbol name and the parameters you defined to pass the new data to the database!
 
-![image](./images/9.png)
 
+```js
+function WriteToDatabase(myId, newActive) {
+
+    var command = {
+        "commands": [
+            {
+                "commandOptions": [
+                    "SendErrorMessage",
+                    "SendWriteValue"
+                ],
+                "symbol": "TcHmiDatabase.local_db.write_testing",
+                "writeValue": {
+                    "myId": myId,
+                    "newActive": newActive
+                }
+            }
+        ]
+    };
+
+    TcHmi.Server.request(command, function (data) {
+        console.log(data);
+    });
+
+}
