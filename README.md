@@ -131,6 +131,51 @@ select type from machines where id = 2;
 
 ![image](./images/22.png)
 
+This will only show the data when the id = 2, but maybe you want it to be more dynamic and change the id? 
+
+5. Start with changing the sql query and update it with
+
+```sql
+select type from machines where id = @id;
+```
+6. Then we also need to define the parameter under the new query
+
+![image](./images/25.png)   
+
+7. Now add a new JavaScript (Function) to the project
+
+![image](./images/23.png)
+
+8. Change the parameter and data type we want to pass in to our new function here. Because the server request method is asynchronous we need to also change the function to act accordingly and wait for the result before we exit the function
+
+![image](./images/24.png)   
+
+9. Then we can add our javascript code inside the new function
+
+![image](./images/27.png) 
+
+```js
+var command = {
+    "requestType": 'ReadWrite',
+    "commands": [
+        {
+            "symbol": "TcHmiDatabase.local_db.list_machine_by_id",
+            "writeValue": {
+                "id": machineId
+            }
+        }
+    ]
+};
+
+TcHmi.Server.request(command, function (data) {
+    //Return the value of type
+    ctx.success(data.results[0].value[0].type); 
+});
+```
+10. Then as the last step we call the function, for example directly inside the Text property in a TcHmiTextblock. Make sure to write a value inside <machineId> or create a data-binding for a symbol. Otherwise it will not work :)
+
+![image](./images/26.png) 
+
 ## Write to database
 
 1. First define a new query with parameters 
