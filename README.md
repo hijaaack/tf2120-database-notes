@@ -48,11 +48,29 @@ Driver={PostgreSQL Unicode(x64)};Server=localhost;Port=5432;Database=hmiExtensio
 
 ## TwinCAT HMI Configuration + Installation
 
-First you need to install the package "TwinCAT.HMI.Database" via TcPkg. Currently it's only avialable in the Preview-feed
+1. First you need to install the package "TwinCAT.HMI.Database" via TcPkg. Currently it's only avialable in the Preview-feed
 
 ```
 tcpkg install TwinCAT.HMI.Database 
 ```
+2. Then in your TwinCAT HMI Project, you need to install the nuget package "Beckhoff.TwinCAT.HMI.Database"
+
+![image](./images/15.png)
+
+3. After the nuget installation you should under the Server see the new "TcHmiDatabase" module. If it's now showing a green arrow as in the picture below, you most likely have a license error. Check the Error list window for more information.
+
+![image](./images/16.png)
+
+4. Double click the "TcHmiDatabase" module shown in the picture above and this will open up the configuration page of this extension. Under the General tab we have the possibility to add our database connection.
+5. Press "Add" and fill in the information. It's recommended to use the Password field and pass the password with the @password parameter to the connection string. This will ensure that the password is encrypted in the HMI project.
+
+![image](./images/17.png)   
+
+6. After the database has been added we can check under the Diagnostics tab that the connection state is "Good"
+
+![image](./images/18.png)  
+
+7. Done! Now we can continue with the Read / Write to database
 
 ## Read from database
 
@@ -65,7 +83,7 @@ INSERT INTO machines (id, type, active)VALUES    (1, 'drive', false),    (2, 'pu
 
 After we have created the new table with data with the query above we now have data to show in the HMI. 
 
-In the database hmi configuration we have the option to enable table browsing (this is default true)
+In the database hmi configuration we have the option to enable table browsing
 
 ![image](./images/10.png)
 
