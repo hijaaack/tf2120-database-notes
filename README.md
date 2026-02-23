@@ -74,6 +74,8 @@ tcpkg install TwinCAT.HMI.Database
 
 ## Read from database
 
+### Show Table data
+
 1. First lets add a table with some dummy data to the database. I added this data with pgAdmin 4 software.
 
 ```sql
@@ -102,6 +104,32 @@ Then we will get our tables listed as individual symbols here
 4. Then we can see the result in the LiveView
 
 ![image](./images/14.png)
+
+### Show data from specific SQL query
+
+Another way to show data is to add a query that can be executed over the server
+
+In this sample we will add a query that list the machine by id
+
+1. Go to the "TcHmiDatabase" configuration and under "Queries" press "Add"
+
+![image](./images/19.png)
+
+```sql
+select type from machines where id = 2;
+```
+
+2. Then you should have a new "list_machine_by_id" symbol available with a "type" symbol inside
+
+![image](./images/20.png)
+
+3. Then we can link the new symbol to a TcHmiTextblock to show the data
+
+![image](./images/21.png)
+
+4. And here we can see the result for id = 2
+
+![image](./images/22.png)
 
 ## Write to database
 
