@@ -46,9 +46,13 @@ This is how my connection string looks like that the HMI-Server Extension wants
 Driver={PostgreSQL Unicode(x64)};Server=localhost;Port=5432;Database=hmiExtension;Uid=Jack;Pwd=@password;
 ```
 
-## TwinCAT HMI Configuration
+## TwinCAT HMI Configuration + Installation
 
-To be continued....
+First you need to install the package "TwinCAT.HMI.Database" via TcPkg. Currently it's only avialable in the Preview-feed
+
+```
+tcpkg install TwinCAT.HMI.Database 
+```
 
 ## Read from database
 
