@@ -189,7 +189,7 @@ This is my sample query to update the active value depending on the specific id
 
 ![image](./images/6.png)
 
-4. Double check under diagnostic after creating the new query that the db extension thinks its "good"
+4. Double check under diagnostic after creating the new query that the db extension reports its "good"
 
 ![image](./images/7.png)
 
@@ -198,7 +198,6 @@ This is my sample query to update the active value depending on the specific id
 ![image](./images/8.png)
 
 6. Then create a javascript function that uses the request method. Define the command with the symbol name and the parameters you defined to pass the new data to the database!
-
 
 ```js
 function WriteToDatabase(myId, newActive) {
@@ -224,3 +223,12 @@ function WriteToDatabase(myId, newActive) {
     });
 
 }
+```
+7. Then we can add some controls to the HMI to test this out
+
+![image](./images/28.png)  
+
+8. Then on the buttons .onPressed event we can call the function and pass the data from the input fields
+   
+![image](./images/29.png) 
+
